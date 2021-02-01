@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
+        
+        
+        
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -71,17 +76,89 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
+            List<string> theList = new List<string>();
+            String[] mylist = null;
+            do
+            {
+                bool success = false;
+                Console.WriteLine("To add a string to the list press +");
+                Console.WriteLine("To remove a string from the list press -");
+               
+                string input = Console.ReadLine();
+                char nav = input[0];
+                //string value = input.substring(1);
+                string value = input.Substring(1);
+               // if(string.IsNullOrWhiteSpace(char.IsWhiteSpace(value)))
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+                value = Regex.Replace(value,@"\s+"," ");
+                //Char[] seperator = { '+', '-', ' ' };
+               mylist = value.Split();
 
-            //switch(nav){...}
-        }
 
-        /// <summary>
-        /// Examines the datastructure Queue
+                switch (nav)
+                {
+
+
+                    case '+':
+                        for (int i = 0; i < mylist.Length; i++)
+                        {
+                            
+                          theList.Add(mylist[i]);
+
+                        }
+
+                        foreach (string s in theList)
+                        {
+                            Console.WriteLine(s);
+
+
+                        }
+                        Console.WriteLine($"Count :{theList.Count}");
+                        Console.WriteLine($"ListCapacity :{theList.Capacity}");
+                        break;
+
+
+
+                    case '-':
+                        for (int i = 0; i < mylist.Length; i++)
+                        {
+
+                            theList.Remove(mylist[i]);
+
+                        }
+
+                        foreach (string s in theList)
+                        {
+                            Console.WriteLine(s);
+
+
+                        }
+                        Console.WriteLine($"Count :{theList.Count}");
+                        Console.WriteLine($"ListCapacity :{theList.Capacity}");
+
+                        break;
+
+
+
+                    default:
+                        Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
+                        break;
+                    case '0':
+
+                        Main();
+                      break; 
+
+                }
+                
+            }
+            
+
+            while (true);
+
+           
+            
+            /// <summary>
+        }     /// Examines the datastructure Queue
         /// </summary>
         static void ExamineQueue()
         {
@@ -90,6 +167,8 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+            Queueklassen queueklassen = new Queueklassen();
+            queueklassen.addperson();
         }
 
         /// <summary>
