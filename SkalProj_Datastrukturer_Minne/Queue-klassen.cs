@@ -11,22 +11,22 @@ namespace SkalProj_Datastrukturer_Minne
         private List<string> deQue;
         public List<string> Deque { get; set; }
 
-
+        
         public Queueklassen()
         {
             Enque = new List<string>();
             Deque = new List<string>();
         }
-        internal void addperson()
+        internal void TestQueue​()
         {
 
             do
             {
-                //string name = "";
-                //int index = 0;
+                
 
-                Console.WriteLine("1.Add new person to the queue");
-                Console.WriteLine("2.Remove  a person from the queue");
+                Console.WriteLine("\n1. Add a person to the Queue");
+                Console.WriteLine("\n2. Dequeue a person");
+                Console.WriteLine("\n0. Go back to the main menu");
 
                 string input = Console.ReadLine();
                 switch (input)
@@ -72,19 +72,43 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case "2":
                         Console.WriteLine("Sortie");
+                       
 
-                        Deque.Insert(0, Enque[0]);
-                        Enque.Remove(Enque[0]);
-
-                        foreach (string sortie in Deque)
+                        try
                         {
 
-                            Console.WriteLine(sortie);
+                            //Deque.Insert(0, Enque[0-1]);
+                              Enque.Remove(Enque[0]);
+                           
+
                         }
+                        catch (Exception exception)
+                        {
+                            Console.WriteLine("Message:" + exception.Message);
+                            Console.WriteLine("Stack Trace" + exception.StackTrace);
+
+                        }
+
+                        finally
+                        {
+                            foreach (string sortie in Enque)
+                            {
+
+                                Console.WriteLine(sortie);
+                            }
+
+
+                        }
+                            break;
+                            FirstElement = null;
+
+                            
+                    case "0":
+                       // Environment.Exit(1);
                         break;
-                         FirstElement = null; 
 
                     default:
+                        Console.WriteLine("Choose a number between the following list (1,2,0)");
                         break;
                 }
 

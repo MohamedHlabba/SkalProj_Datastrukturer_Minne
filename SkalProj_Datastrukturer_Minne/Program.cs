@@ -168,12 +168,13 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
             Queueklassen queueklassen = new Queueklassen();
-            queueklassen.addperson();
+            queueklassen.TestQueue​();
         }
 
         /// <summary>
         /// Examines the datastructure Stack
         /// </summary>
+        /// //TODO
         static void ExamineStack()
         {
             /*
