@@ -35,7 +35,7 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                     case "1":
-                        Console.WriteLine("Person Name:");
+                        Console.WriteLine("Name:  ");
                         string name = Console.ReadLine();
 
                         while (string.IsNullOrEmpty(name))
@@ -57,29 +57,36 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-                            Console.WriteLine("*-----------------*");
+                            Console.WriteLine("*-------Kö---------*");
 
-                            Console.WriteLine($"{namee}");
+                            Console.WriteLine($"{namee} ställer sig i kön ");
 
                             Console.WriteLine("*-----------------*");
 
 
                         }
+                        //Console.Clear();
                         string FirstElement = Enque[0];
 
 
 
                         break;
                     case "2":
-                        Console.WriteLine("Sortie");
-                       
-
-                        try
+                        
+                     ///check how to seperate the 2 methods 
+                        try 
                         {
-
-                            //Deque.Insert(0, Enque[0-1]);
-                              Enque.Remove(Enque[0]);
-                           
+                            if (Enque.Count == 0)
+                            {
+                                Console.WriteLine("*Kö är tomt*");
+                                Console.WriteLine("*-----------------*");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{Enque[0]} blir expedierad och lämnar kö");
+                                //Deque.Insert(0, Enque[0-1]);
+                                Enque.Remove(Enque[0]);
+                            }// Console.WriteLine($"{Enque[0-1]} blir expedierad och lämnar kö");
 
                         }
                         catch (Exception exception)
@@ -90,11 +97,12 @@ namespace SkalProj_Datastrukturer_Minne
                         }
 
                         finally
-                        {
+                        {   
                             foreach (string sortie in Enque)
                             {
-
-                                Console.WriteLine(sortie);
+                                Console.WriteLine("*-------Kö---------*");
+                                Console.WriteLine($" {sortie}  ställer sig i kö");
+                                Console.WriteLine("*--------------------------*");
                             }
 
 

@@ -80,20 +80,21 @@ namespace SkalProj_Datastrukturer_Minne
             String[] mylist = null;
             do
             {
-                bool success = false;
+         
                 Console.WriteLine("To add a string to the list press +");
                 Console.WriteLine("To remove a string from the list press -");
                
                 string input = Console.ReadLine();
+                string input2 = input.Substring(1);
                 char nav = input[0];
                 //string value = input.substring(1);
                 string value = input.Substring(1);
                // if(string.IsNullOrWhiteSpace(char.IsWhiteSpace(value)))
 
                 value = Regex.Replace(value,@"\s+"," ");
-                //Char[] seperator = { '+', '-', ' ' };
-               mylist = value.Split();
-
+                Char[] seperator = { '+', '-', ' ' };
+                mylist = value.Split(seperator,StringSplitOptions.None);
+                input2=Regex.Replace(input2," ", "");  
 
                 switch (nav)
                 {
@@ -102,8 +103,12 @@ namespace SkalProj_Datastrukturer_Minne
                     case '+':
                         for (int i = 0; i < mylist.Length; i++)
                         {
-                            
-                          theList.Add(mylist[i]);
+                            if (!string.IsNullOrWhiteSpace(mylist[i]))
+                            {
+
+                                theList.Add(mylist[i]);
+                            } 
+                       
 
                         }
 
@@ -120,12 +125,21 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                     case '-':
-                        for (int i = 0; i < mylist.Length; i++)
-                        {
+                      
+                            if (theList.Count==0)
+                            {
 
-                            theList.Remove(mylist[i]);
+                                Console.WriteLine("Add  a person first");
 
-                        }
+                            }
+                            else if (theList.Contains(input2))
+                            {
+
+                            theList.Remove(input2);
+                            }
+
+
+                        
 
                         foreach (string s in theList)
                         {
@@ -137,8 +151,6 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine($"ListCapacity :{theList.Capacity}");
 
                         break;
-
-
 
                     default:
                         Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
