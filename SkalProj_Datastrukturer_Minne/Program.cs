@@ -80,87 +80,111 @@ namespace SkalProj_Datastrukturer_Minne
             String[] mylist = null;
             do
             {
-         
-                Console.WriteLine("To add a string to the list press +");
-                Console.WriteLine("To remove a string from the list press -");
-               
-                string input = Console.ReadLine();
+
+
+                
+
+                
+                    Console.WriteLine(" (+) To add a string to the list ");
+                    Console.WriteLine(" (-) To remove a string from the list ");
+                
+
+                    string input = Console.ReadLine();
+                    
+                while (string.IsNullOrWhiteSpace(input))
+                    {
+                    Console.WriteLine("Please enter something !");
+                    input = Console.ReadLine();
+
+                    }
+
+                    char nav = input[0];
+
+                 string value = input.Substring(1);
                 string input2 = input.Substring(1);
-                char nav = input[0];
-                //string value = input.substring(1);
-                string value = input.Substring(1);
-               // if(string.IsNullOrWhiteSpace(char.IsWhiteSpace(value)))
+                   
+                    value = Regex.Replace(value, @"\s+", " ");
+  
+                    Char[] seperator = { '+', '-', ' ' };
+                    mylist = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
+                    input2 = Regex.Replace(input2, " ", "");
+                    
 
-                value = Regex.Replace(value,@"\s+"," ");
-                Char[] seperator = { '+', '-', ' ' };
-                mylist = value.Split(seperator,StringSplitOptions.None);
-                input2=Regex.Replace(input2," ", "");  
-
-                switch (nav)
-                {
+                
+                    switch (nav)
+                    {
 
 
-                    case '+':
-                        for (int i = 0; i < mylist.Length; i++)
-                        {
-                            if (!string.IsNullOrWhiteSpace(mylist[i]))
+                        case '+':
+                            for (int i = 0; i < mylist.Length; i++)
+                            {
+                            if ((!string.IsNullOrWhiteSpace(mylist[i])) && (!theList.Contains(value)))
                             {
 
                                 theList.Add(mylist[i]);
-                            } 
-                       
+                            }
+                            else
+                            {
+                                Console.WriteLine("Name or string exist already");
+                            }
+                            }
 
-                        }
+                            foreach (string s in theList)
+                            {
+                                Console.WriteLine(s);
 
-                        foreach (string s in theList)
-                        {
-                            Console.WriteLine(s);
+                            Console.WriteLine($"Count :{theList.Count}");
+                            Console.WriteLine($"ListCapacity :{theList.Capacity}");
 
-
-                        }
-                        Console.WriteLine($"Count :{theList.Count}");
-                        Console.WriteLine($"ListCapacity :{theList.Capacity}");
-                        break;
+                            }
+                            break;
 
 
 
-                    case '-':
-                      
-                            if (theList.Count==0)
+                        case '-':
+
+                            if (theList.Count == 0)
                             {
 
-                                Console.WriteLine("Add  a person first");
+                                Console.WriteLine("Add  a name or string  first");
 
                             }
                             else if (theList.Contains(input2))
                             {
 
-                            theList.Remove(input2);
+                                theList.Remove(input2);
+                            }
+                            else if(!theList.Contains(input2))
+
+                            {
+
+                            Console.WriteLine("Please Check the spelling first or maybe name doesn't exist ");
+                         
                             }
 
 
-                        
-
-                        foreach (string s in theList)
-                        {
-                            Console.WriteLine(s);
+                            foreach (string s in theList)
+                            {
+                                Console.WriteLine(s);
 
 
-                        }
-                        Console.WriteLine($"Count :{theList.Count}");
-                        Console.WriteLine($"ListCapacity :{theList.Capacity}");
+                            }
 
-                        break;
+                            Console.WriteLine($"Count :{theList.Count}");
+                            Console.WriteLine($"ListCapacity :{theList.Capacity}");
+                            break;
 
-                    default:
-                        Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
-                        break;
-                    case '0':
+                        default:
+                            Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
+                            break;
+                        case '0':
 
-                        Main();
-                      break; 
+                            Main();
+                            break;
 
-                }
+                    }
+                
+                
                 
             }
             
@@ -168,7 +192,7 @@ namespace SkalProj_Datastrukturer_Minne
             while (true);
 
            
-            
+        
             /// <summary>
         }     /// Examines the datastructure Queue
         /// </summary>

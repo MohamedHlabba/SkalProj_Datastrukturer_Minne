@@ -24,9 +24,8 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 
 
-                Console.WriteLine("\n1. Add a person to the Queue");
-                Console.WriteLine("\n2. Dequeue a person");
-                Console.WriteLine("\n0. Go back to the main menu");
+                Console.WriteLine("\n1.Add a person to the Queue"+ "\n2.Dequeue a person"+ "\n0.Go back to the main menu");
+                
 
                 string input = Console.ReadLine();
                 switch (input)
@@ -35,7 +34,7 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                     case "1":
-                        Console.WriteLine("Name:  ");
+                        Console.WriteLine("Välkomen till Ica kassan , namnet ");
                         string name = Console.ReadLine();
 
                         while (string.IsNullOrEmpty(name))
@@ -57,36 +56,53 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-                            Console.WriteLine("*-------Kö---------*");
+                            Console.WriteLine("*-------------Kö----------------*");
 
                             Console.WriteLine($"{namee} ställer sig i kön ");
 
-                            Console.WriteLine("*-----------------*");
+                            Console.WriteLine("*---------------------------*");
 
 
                         }
-                        //Console.Clear();
-                        string FirstElement = Enque[0];
+                        
+                       // string FirstElement = Enque[0];
 
 
 
                         break;
                     case "2":
+
                         
-                     ///check how to seperate the 2 methods 
                         try 
                         {
-                            if (Enque.Count == 0)
-                            {
-                                Console.WriteLine("*Kö är tomt*");
-                                Console.WriteLine("*-----------------*");
-                            }
-                            else
+
+
+
+                            while (Enque.Count != 0)
                             {
                                 Console.WriteLine($"{Enque[0]} blir expedierad och lämnar kö");
-                                //Deque.Insert(0, Enque[0-1]);
-                                Enque.Remove(Enque[0]);
-                            }// Console.WriteLine($"{Enque[0-1]} blir expedierad och lämnar kö");
+                                   Enque.Remove(Enque[0]);
+                                   Console.WriteLine("*-----------------*");
+
+                            }
+                            Console.WriteLine("*Kö är tomt*");
+
+                            //if (Enque.Count == 0)
+                            //{
+                            //    Console.WriteLine("*Kö är tomt*");
+                            //    Console.WriteLine("*-----------------*");
+                            //}
+                            //else 
+                            //{
+                            //    Console.WriteLine($"{Enque[0]} blir expedierad och lämnar kö");
+                            //    Enque.Remove(Enque[0]);
+                            //    Console.WriteLine("*-----------------*");
+
+
+                            //}
+
+                            //Console.WriteLine("*Kö är tomt*");
+                            //Console.WriteLine("*-----------------*");
 
                         }
                         catch (Exception exception)
@@ -108,7 +124,7 @@ namespace SkalProj_Datastrukturer_Minne
 
                         }
                             break;
-                            FirstElement = null;
+                            //FirstElement = null;
 
                             
                     case "0":
