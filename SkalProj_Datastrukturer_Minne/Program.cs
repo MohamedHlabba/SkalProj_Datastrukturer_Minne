@@ -245,7 +245,7 @@ namespace SkalProj_Datastrukturer_Minne
             do
             {
 
-                
+
 
                 Console.WriteLine("\n1.Push" + "\n2.Pop" + "\n0.Go back to the main menu");
 
