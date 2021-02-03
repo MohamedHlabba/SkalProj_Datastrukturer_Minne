@@ -80,13 +80,8 @@ namespace SkalProj_Datastrukturer_Minne
             String[] mylist = null;
             do
             {
-
-
-                
-
-                
-                    Console.WriteLine(" (+) To add a string to the list ");
-                    Console.WriteLine(" (-) To remove a string from the list ");
+                    Console.WriteLine("Press (+) To add a string to the list ");
+                    Console.WriteLine("Press (-) To remove a string from the list ");
                 
 
                     string input = Console.ReadLine();
@@ -101,13 +96,15 @@ namespace SkalProj_Datastrukturer_Minne
                     char nav = input[0];
 
                  string value = input.Substring(1);
-                string input2 = input.Substring(1);
-                   
                     value = Regex.Replace(value, @"\s+", " ");
+                string input2 = input.Substring(1);
+                input2 = Regex.Replace(input2, " ", "");
+
+                                  
   
                     Char[] seperator = { '+', '-', ' ' };
                     mylist = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
-                    input2 = Regex.Replace(input2, " ", "");
+                    
                     
 
                 
@@ -116,6 +113,7 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                         case '+':
+                        
                             for (int i = 0; i < mylist.Length; i++)
                             {
                             if ((!string.IsNullOrWhiteSpace(mylist[i])) && (!theList.Contains(value)))
@@ -198,13 +196,38 @@ namespace SkalProj_Datastrukturer_Minne
         /// </summary>
         static void ExamineQueue()
         {
+            Queueklassen queueklassen = new Queueklassen();
+           
+           
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
-            Queueklassen queueklassen = new Queueklassen();
-            queueklassen.TestQueue​();
+            do
+            {
+
+            Console.WriteLine("\n1.Add a person to the Queue" + "\n2.Dequeue a person" + "\n0.Go back to the main menu");
+
+
+            string Entree = Console.ReadLine();
+            switch (Entree)
+            {
+                case "1":
+                    queueklassen.Enqueue();
+                    break;
+                case "2":
+                    queueklassen.Dequeue();
+                    break;
+                case "0":
+                    Main();
+                    break;
+
+                default:
+                    Console.WriteLine("Please choose a choice from the list");
+                    break;
+            }
+            } while (true);
         }
 
         /// <summary>
@@ -218,9 +241,40 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+            StackKlass stackKlass = new StackKlass();
+            do
+            {
+
+                
+
+                Console.WriteLine("\n1.Push" + "\n2.Pop" + "\n0.Go back to the main menu");
+
+
+                string Entree = Console.ReadLine();
+                switch (Entree)
+                {
+                    case "1":    
+                        stackKlass.Push();
+                        break;
+                    case "2":
+                        stackKlass.Pop();
+                        break;
+                    case "0":
+                        Main();
+                        break;
+
+                    default:
+                        Console.WriteLine("Please choose a choice from the list");
+                        break;
+                }
+            } while (true);
         }
 
-        static void CheckParanthesis()
+
+
+    
+
+    static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
