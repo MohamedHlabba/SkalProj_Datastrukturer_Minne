@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,41 +9,52 @@ namespace SkalProj_Datastrukturer_Minne
     {
         private List<string> enQue;
         public List<string> Enque { get; set; }
-       
 
-        
+        private Queue queue;
+        public Queue Queue { get; set; }
+
+
         public Queueklassen()
         {
             Enque = new List<string>();
+            Queue = new Queue();
+            
            
         }
 
         internal void CheckListCount()
         {
-            if (Enque.Count == 0)
+            if (Queue.Count == 0)
             {
-                Console.WriteLine("Kö är tomt");
+
+                Console.WriteLine("*-----------------*"); 
+                Console.WriteLine("*Kö är tomt*");
                 
+
             }
             else
             {
 
-                Console.WriteLine($"{Enque[0]} blir expedierad och lämnar kö");
-                Enque.Remove(Enque[0]);
-                if (Enque.Count == 0)
+                Console.WriteLine($"{Queue.Dequeue()} blir expedierad och lämnar kö");
+               // que.Remove(Enque[0]);
+                
+                if (Queue.Count == 0)
                 {
 
                           Console.WriteLine("*-----------------*");
-                           Console.WriteLine("*Kö är tomt*");
+                          Console.WriteLine("*Kö är tomt*");
 
                 }
             }
+            
+
 
         }
 
         internal void Enqueue()
         {
             Console.WriteLine("Välkomen till Ica kassan , namnet ");
+           
             string name = Console.ReadLine();
 
             while (string.IsNullOrEmpty(name))
@@ -52,13 +64,14 @@ namespace SkalProj_Datastrukturer_Minne
                 name = Console.ReadLine();
             }
 
-            Enque.Add(name);
+            Queue.Enqueue(name);
 
 
-            foreach (string namee in Enque)
+            Console.WriteLine("*-------------Kö----------------*");
+            foreach (string namee in Queue)
             {
 
-                Console.WriteLine("*-------------Kö----------------*");
+                
 
                 Console.WriteLine($"{namee} ställer sig i kön ");
 
@@ -75,7 +88,7 @@ namespace SkalProj_Datastrukturer_Minne
             {
 
                 CheckListCount();
-
+             
 
             }
             catch (Exception exception)
@@ -87,9 +100,10 @@ namespace SkalProj_Datastrukturer_Minne
 
             finally
             {
-                foreach (string item in Enque)
+                
+                foreach (string item in Queue)
                 {
-                    Console.WriteLine("*-------Kö---------*");
+                    
                     Console.WriteLine($" {item}  ställer sig i kö");
                     Console.WriteLine("*--------------------------*");
                 }

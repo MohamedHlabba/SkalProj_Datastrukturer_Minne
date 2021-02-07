@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -6,9 +7,9 @@ namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
-        
-        
-        
+
+
+
         /// <summary>
         /// The main method, vill handle the menues for the program
         /// </summary>
@@ -76,129 +77,147 @@ namespace SkalProj_Datastrukturer_Minne
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
             */
+
+
+            // svar på frågor
+            //2.List capacitet ökar när list.count==list.capacity
+            //3.Det fördubblas 4,8,16....
+            //4.​​listans​​kapacitet  öker inte ​​i ​​samma ​​takt ​​som ​​element ​​läggs​​, Listanskapacitet fördubblas varge gång  för att undvika tilldelning  av minnet för ofta, målet är spara minnetsutrymme.
+            //5.Kapaciete minskar inte, det har redan tilldelats i minnet
+            //6.När användaren vet att han bara kommer att arbeta med ett fast antal element
+
+
+
+
+
             List<string> theList = new List<string>();
-            String[] mylist = null;
+
+
+            String[] arrayList = null;
             do
             {
-                    Console.WriteLine("Press (+) To add a string to the list ");
-                    Console.WriteLine("Press (-) To remove a string from the list ");
-                
+                Console.WriteLine("Press (+) To add a string to the list ");
+                Console.WriteLine("Press (-) To remove a string from the list ");
 
-                    string input = Console.ReadLine();
-                    
+
+                string input = Console.ReadLine();
+
                 while (string.IsNullOrWhiteSpace(input))
-                    {
+                {
                     Console.WriteLine("Please enter something !");
                     input = Console.ReadLine();
 
-                    }
+                }
 
-                    char nav = input[0];
+                char nav = input[0];
 
-                 string value = input.Substring(1);
-                    value = Regex.Replace(value, @"\s+", " ");
+                string value = input.Substring(1);
+
+                value = Regex.Replace(value, @"\s+", " ");
                 string input2 = input.Substring(1);
                 input2 = Regex.Replace(input2, " ", "");
 
-                                  
-  
-                    Char[] seperator = { '+', '-', ' ' };
-                    mylist = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
-                    
-                    
-
-                
-                    switch (nav)
-                    {
 
 
-                        case '+':
-                        
-                            for (int i = 0; i < mylist.Length; i++)
+                Char[] seperator = { '+', '-', ' ' };
+                arrayList = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
+
+
+
+
+                switch (nav)
+                {
+
+
+                    case '+':
+
+                        for (int i = 0; i < arrayList.Length; i++)
+                        {
+                            if ((!string.IsNullOrWhiteSpace(arrayList[i])) && (!theList.Contains(value)))
                             {
-                            if ((!string.IsNullOrWhiteSpace(mylist[i])) && (!theList.Contains(value)))
-                            {
 
-                                theList.Add(mylist[i]);
+                                theList.Add(arrayList[i]);
+
                             }
                             else
                             {
                                 Console.WriteLine("Name or string exist already");
                             }
-                            }
+                        }
 
-                            foreach (string s in theList)
-                            {
-                                Console.WriteLine(s);
+                        foreach (string s in theList)
+                        {
+                            Console.WriteLine(s);
 
                             Console.WriteLine($"Count :{theList.Count}");
                             Console.WriteLine($"ListCapacity :{theList.Capacity}");
 
-                            }
-                            break;
+                        }
+                        break;
 
 
 
-                        case '-':
+                    case '-':
 
-                            if (theList.Count == 0)
-                            {
+                        if (theList.Count == 0)
+                        {
 
-                                Console.WriteLine("Add  a name or string  first");
+                            Console.WriteLine("Add  a name or string  first");
 
-                            }
-                            else if (theList.Contains(input2))
-                            {
+                        }
+                        else if (theList.Contains(input2))
+                        {
 
-                                theList.Remove(input2);
-                            }
-                            else if(!theList.Contains(input2))
+                            theList.Remove(input2);
+                        }
+                        else if (!theList.Contains(input2))
 
-                            {
+                        {
 
                             Console.WriteLine("Please Check the spelling first or maybe name doesn't exist ");
-                         
-                            }
+
+                        }
 
 
-                            foreach (string s in theList)
-                            {
-                                Console.WriteLine(s);
+                        foreach (string s in theList)
+                        {
+                            Console.WriteLine(s);
 
 
-                            }
+                        }
 
-                            Console.WriteLine($"Count :{theList.Count}");
-                            Console.WriteLine($"ListCapacity :{theList.Capacity}");
-                            break;
+                        Console.WriteLine($"Count :{theList.Count}");
+                        Console.WriteLine($"ListCapacity :{theList.Capacity}");
+                        break;
 
-                        default:
-                            Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
-                            break;
-                        case '0':
+                    default:
+                        Console.WriteLine(" (in this scope you can just use +,- to add or remove a string)");
+                        break;
+                    case '0':
 
-                            Main();
-                            break;
+                        Main();
+                        break;
 
-                    }
-                
-                
-                
+                }
+
+
+
             }
-            
+
 
             while (true);
 
-           
-        
+
+
             /// <summary>
         }     /// Examines the datastructure Queue
-        /// </summary>
+              /// </summary>
         static void ExamineQueue()
         {
             Queueklassen queueklassen = new Queueklassen();
-           
-           
+
+
+
             /*
              * Loop this method untill the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
@@ -207,26 +226,26 @@ namespace SkalProj_Datastrukturer_Minne
             do
             {
 
-            Console.WriteLine("\n1.Add a person to the Queue" + "\n2.Dequeue a person" + "\n0.Go back to the main menu");
+                Console.WriteLine("\n1.Add a person to the Queue" + "\n2.Dequeue a person" + "\n0.Go back to the main menu");
 
 
-            string Entree = Console.ReadLine();
-            switch (Entree)
-            {
-                case "1":
-                    queueklassen.Enqueue();
-                    break;
-                case "2":
-                    queueklassen.Dequeue();
-                    break;
-                case "0":
-                    Main();
-                    break;
+                string Entree = Console.ReadLine();
+                switch (Entree)
+                {
+                    case "1":
+                        queueklassen.Enqueue();
+                        break;
+                    case "2":
+                        queueklassen.Dequeue();
+                        break;
+                    case "0":
+                        Main();
+                        break;
 
-                default:
-                    Console.WriteLine("Please choose a choice from the list");
-                    break;
-            }
+                    default:
+                        Console.WriteLine("Please choose a choice from the list");
+                        break;
+                }
             } while (true);
         }
 
@@ -241,23 +260,26 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
-            StackKlass stackKlass = new StackKlass();
+            MinStackKlass stackKlass = new MinStackKlass();
             do
             {
 
 
 
-                Console.WriteLine("\n1.Push" + "\n2.Pop" + "\n0.Go back to the main menu");
+                Console.WriteLine("\n1.Push" + "\n2.Pop" + "\n3.ReverseText" + "\n0.Go back to the main menu");
 
 
                 string Entree = Console.ReadLine();
                 switch (Entree)
                 {
-                    case "1":    
+                    case "1":
                         stackKlass.Push();
                         break;
                     case "2":
                         stackKlass.Pop();
+                        break;
+                    case "3":
+                        stackKlass.Reverse();
                         break;
                     case "0":
                         Main();
@@ -272,18 +294,102 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-    
 
-    static void CheckParanthesis()
+
+
+        static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
-             * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
+             * Example of incorrect: (()]), [), {[()}],  
+             * List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
-        }
+            do
+            {
 
-    }
+
+                Console.WriteLine("\n1.check if the paranthesis in a string is Correct or incorrect" + "\n0.Go back to the main menu");
+
+
+                string Entree = Console.ReadLine();
+                switch (Entree)
+                {
+                    case "1":
+
+
+                        var dictionary = new Dictionary<string, string>() {
+            { "{", "}" },
+            {"[", "]" },
+            {"(",")" }
+        };
+
+
+                        string input = Console.ReadLine();
+
+                        var queue = new Queue();
+                        var stack = new Stack();
+
+                        bool isBalanced = true;
+
+                        var size = input.ToCharArray().Length;
+
+                        if (size % 2 != 0)
+                        {
+                            isBalanced = false;
+                        }
+                        else
+                        {
+                            foreach (var c in input.ToCharArray())
+                            {
+                                stack.Push(c.ToString());
+                                queue.Enqueue(c.ToString());
+                            }
+
+                            while (stack.Count > size / 2 && queue.Count > size / 2)
+                            {
+                                var a = (string)queue.Dequeue();
+                                var b = (string)stack.Pop();
+
+                                if (dictionary.ContainsKey(a) && b != dictionary[a])
+                                {
+                                    isBalanced = false;
+
+                                }
+
+
+                            }
+
+
+                        }
+
+                        Console.WriteLine(isBalanced ? "balanced!" : "Not Balanced");
+
+                        break;
+
+                    case "2":
+                        break;
+                    case "0":
+                        Main();
+                        break;
+
+                    default:
+                        break;
+
+                }
+
+            }   
+            
+                while (true) ;
+            
+        }
+    }   
+
+
 }
+        
+
+ 
+
 
