@@ -7,8 +7,7 @@ namespace SkalProj_Datastrukturer_Minne
 {
     public class Queueklassen
     {
-        private List<string> enQue;
-        public List<string> Enque { get; set; }
+      
 
         private Queue queue;
         public Queue Queue { get; set; }
@@ -16,7 +15,7 @@ namespace SkalProj_Datastrukturer_Minne
 
         public Queueklassen()
         {
-            Enque = new List<string>();
+           
             Queue = new Queue();
             
            

@@ -129,7 +129,6 @@ namespace SkalProj_Datastrukturer_Minne
         {
            
            
-
             Console.WriteLine("Enter Text");
             string name = Console.ReadLine();
             while (string.IsNullOrEmpty(name))
@@ -139,16 +138,11 @@ namespace SkalProj_Datastrukturer_Minne
                 name = Console.ReadLine();
             }
 
-            
-
             var c = name.ToCharArray();
 
             // create a Stack from an array
             Stack<char> myStack = new Stack<char>(c);
-            Stack st = new Stack();
-
-           
-
+            
 
             foreach (var item in myStack)
             {
@@ -160,106 +154,32 @@ namespace SkalProj_Datastrukturer_Minne
 
 
         }
-
-       
-
  
 
-        internal void ReverseText()
-        {
-            Console.WriteLine("Enter Text");
-            string name = Console.ReadLine();
-            while (string.IsNullOrEmpty(name))
-            //det här är ett test
-            {
-                Console.WriteLine("Text can't be empty! ");
-                name = Console.ReadLine();
-            }
-            char[] charArray = name.ToCharArray();
-                   Array.Reverse(charArray);
-              new string(charArray);
+        //internal void ReverseText()
+        //{
+        //    Console.WriteLine("Enter Text");
+        //    string name = Console.ReadLine();
+        //    while (string.IsNullOrEmpty(name))
+        //    //det här är ett test
+        //    {
+        //        Console.WriteLine("Text can't be empty! ");
+        //        name = Console.ReadLine();
+        //    }
+        //    char[] charArray = name.ToCharArray();
+        //           Array.Reverse(charArray);
+        //      new string(charArray);
 
-            foreach (var item in charArray)
-            {
-                Console.Write(item);
+        //    foreach (var item in charArray)
+        //    {
+        //        Console.Write(item);
 
-            }
+        //    }
 
-        }
+        //}
        
-            internal void CheckIfIsWellFormed()
-            {
-
-            Console.WriteLine("Enter Text");
-            string text = Console.ReadLine();
-            while (string.IsNullOrEmpty(text))
-            //det här är ett test
-            {
-                Console.WriteLine("Text can't be empty! ");
-                text = Console.ReadLine();
-            }
-            char[] charArray = text.ToCharArray();
-
-
-                  Dictionary<string, string> openWith =
-                 new Dictionary<string, string>();
-
-
-
-            }
-        public void Check()
-        {
-
-
-
-            var dictionary = new Dictionary<string, string>() {
-            { "{", "}" },
-            {"[", "]" },
-            {"(",")" }
-        };
-
-
-            var input = Console.ReadLine();
-            var queue = new Queue();
-            var stack = new Stack();
-
-            bool isBalanced = true;
-
-            var size = input.ToCharArray().Length;
-
-            if (size % 2 != 0)
-            {
-                isBalanced = false;
-            }
-            else
-            {
-                foreach (var c in input.ToCharArray())
-                {
-                    stack.Push(c.ToString());
-                    queue.Enqueue(c.ToString());
-                }
-
-                while (stack.Count > size / 2 && queue.Count > size / 2)
-                {
-                    var a = (string)queue.Dequeue();
-                    var b = (string)stack.Pop();
-
-                    if (dictionary.ContainsKey(a) && b != dictionary[a])
-                    {
-                        isBalanced = false;
-
-                    }
-
-
-                }
-
-
-            }
-
-            Console.WriteLine(isBalanced ? "balanced!" : "Not Balanced");
-
-            Console.ReadLine();
-        }
+        
+       
 
 
     }

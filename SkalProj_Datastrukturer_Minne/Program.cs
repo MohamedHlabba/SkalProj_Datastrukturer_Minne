@@ -93,7 +93,7 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
 
 
-            String[] arrayList = null;
+           string[] array= null;
             do
             {
                 Console.WriteLine("Press (+) To add a string to the list ");
@@ -120,8 +120,8 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                 Char[] seperator = { '+', '-', ' ' };
-                arrayList = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
-
+               array = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
+             
 
 
 
@@ -131,12 +131,12 @@ namespace SkalProj_Datastrukturer_Minne
 
                     case '+':
 
-                        for (int i = 0; i < arrayList.Length; i++)
+                        for (int i = 0; i < array.Length; i++)
                         {
-                            if ((!string.IsNullOrWhiteSpace(arrayList[i])) && (!theList.Contains(value)))
+                            if ((!string.IsNullOrWhiteSpace(theList[i])) && (!theList.Contains(value)))
                             {
 
-                                theList.Add(arrayList[i]);
+                                theList.Add(theList[i]);
 
                             }
                             else
@@ -260,6 +260,12 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+
+            //I det här fallet är det inte så smart att använda Class stack för att förverkliga en kö.
+            //Eftersom det första elementet som har lagts till, kommer att vara det sista som tagits bort.(Filo First in Last out principen)
+            // jag har även implementerat en  metod TestQueue() men den här gången med Klass Stack för att simulera hur en kö fungerar enligt (Filo principen)
+
             MinStackKlass stackKlass = new MinStackKlass();
             do
             {
@@ -306,6 +312,8 @@ namespace SkalProj_Datastrukturer_Minne
              * List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            // Jag har valt att använda dictionary för att spara nyckel och värde av alla paranteser , med hjälp av klass stack och klass Queue kan jag jämföra det första elementet och det sista. .
+
             do
             {
 
@@ -325,7 +333,7 @@ namespace SkalProj_Datastrukturer_Minne
             {"(",")" }
         };
 
-
+                        Console.WriteLine("Enter the string to check it");
                         string input = Console.ReadLine();
 
                         var queue = new Queue();
@@ -382,6 +390,19 @@ namespace SkalProj_Datastrukturer_Minne
             }   
             
                 while (true) ;
+            
+        }
+
+
+        /// <summary>
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>0 or (RecursivEvv(n+2)-1) </returns>
+        static int RecursivEven(int n)
+        {
+            if (n % 2 != 0)
+                return 0;
+            else return (RecursivEven(n+2)-1);
             
         }
     }   
