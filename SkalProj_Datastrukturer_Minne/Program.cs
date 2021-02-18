@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SkalProj_Datastrukturer_Minne
@@ -48,6 +49,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     case '4':
                         CheckParanthesis();
+                     
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -93,7 +95,7 @@ namespace SkalProj_Datastrukturer_Minne
             List<string> theList = new List<string>();
 
 
-           string[] array= null;
+            string[] array = null;
             do
             {
                 Console.WriteLine("Press (+) To add a string to the list ");
@@ -120,8 +122,8 @@ namespace SkalProj_Datastrukturer_Minne
 
 
                 Char[] seperator = { '+', '-', ' ' };
-               array = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
-             
+                array = value.Split(seperator, StringSplitOptions.RemoveEmptyEntries);
+
 
 
 
@@ -303,95 +305,7 @@ namespace SkalProj_Datastrukturer_Minne
 
 
 
-        static void CheckParanthesis()
-        {
-            /*
-             * Use this method to check if the paranthesis in a string is Correct or incorrect.
-             * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
-             * Example of incorrect: (()]), [), {[()}],  
-             * List<int> list = new List<int>() { 1, 2, 3, 4 );
-             */
-
-            // Jag har valt att använda dictionary för att spara nyckel och värde av alla paranteser , med hjälp av klass stack och klass Queue kan jag jämföra det första elementet och det sista. .
-
-            do
-            {
-
-
-                Console.WriteLine("\n1.check if the paranthesis in a string is Correct or incorrect" + "\n0.Go back to the main menu");
-
-
-                string Entree = Console.ReadLine();
-                switch (Entree)
-                {
-                    case "1":
-
-
-                        var dictionary = new Dictionary<string, string>() {
-            { "{", "}" },
-            {"[", "]" },
-            {"(",")" }
-        };
-
-                        Console.WriteLine("Enter the string to check it");
-                        string input = Console.ReadLine();
-
-                        var queue = new Queue();
-                        var stack = new Stack();
-
-                        bool isBalanced = true;
-
-                        var size = input.ToCharArray().Length;
-
-                        if (size % 2 != 0)
-                        {
-                            isBalanced = false;
-                        }
-                        else
-                        {
-                            foreach (var c in input.ToCharArray())
-                            {
-                                stack.Push(c.ToString());
-                                queue.Enqueue(c.ToString());
-                            }
-
-                            while (stack.Count > size / 2 && queue.Count > size / 2)
-                            {
-                                var a = (string)queue.Dequeue();
-                                var b = (string)stack.Pop();
-
-                                if (dictionary.ContainsKey(a) && b != dictionary[a])
-                                {
-                                    isBalanced = false;
-
-                                }
-
-
-                            }
-
-
-                        }
-
-                        Console.WriteLine(isBalanced ? "balanced!" : "Not Balanced");
-
-                        break;
-
-                    case "2":
-                        break;
-                    case "0":
-                        Main();
-                        break;
-
-                    default:
-                        break;
-
-                }
-
-            }   
-            
-                while (true) ;
-            
-        }
+       
 
 
         /// <summary>
@@ -402,15 +316,113 @@ namespace SkalProj_Datastrukturer_Minne
         {
             if (n % 2 != 0)
                 return 0;
-            else return (RecursivEven(n+2)-1);
-            
+            else return (RecursivEven(n + 2) - 1);
+
         }
-    }   
 
 
-}
-        
 
- 
+
+
+        public static bool CheckParanthesis()
+        {
+           
+            Dictionary<char, char> bracketPairs = new Dictionary<char, char>() {
+            { '(', ')' },
+            { '{', '}' },
+            { '[', ']' },
+            { '<', '>' }
+        };
+
+            bool isBlanced = false;
+
+            Console.WriteLine("Enter the string to check it");
+            string input = Console.ReadLine();
+            while (string.IsNullOrEmpty(input))
+            //det här är ett test
+            {
+                Console.WriteLine("Text can't be empty! ");
+                input = Console.ReadLine();
+
+            }
+
+
+            Stack<char> brackets = new Stack<char>();
+
+            try
+            {
+                
+                foreach (char c in input)
+                {
+                   
+                    if (bracketPairs.Keys.Contains(c))
+                    {
+                      
+                        brackets.Push(c);
+                    }
+                    else
+
+                        
+                    if (bracketPairs.Values.Contains(c))
+                    {
+                        
+                        if (c == bracketPairs[brackets.First()])
+                        {
+                            brackets.Pop();
+                        }
+                        else
+                        {
+                            
+                            isBlanced = false;
+                            break;
+                        }
+                    }
+                    else
+                        
+                        continue;
+
+                }
+
+                if (brackets.Count==0)
+                {
+                    isBlanced = true;
+
+                }
+                
+
+                Console.WriteLine(isBlanced ? "balanced!" : "Not Balanced");
+
+                return isBlanced;
+
+
+            }
+            catch (InvalidOperationException)
+
+            {
+
+
+               
+                return isBlanced = false;
+              
+            }
+
+           
+     
+
+
+        }
+
+
+
+
+
+    }       
+    }
+
+
+
+
+
+
 
 
